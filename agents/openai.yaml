@@ -1,0 +1,4 @@
+interface:
+  display_name: "Planetable API"
+  short_description: "Operate a local Planetable API server"
+  default_prompt: "Use $planetable to inspect my local Planetable server and make a safe API change."

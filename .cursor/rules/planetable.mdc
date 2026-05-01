@@ -1,0 +1,9 @@
+---
+description: Use the Planetable skill for local Planetable/Planet API work: discover the server, list/search planets and articles, create/edit/delete/publish content, upload attachments, and run safe smoke tests.
+globs:
+alwaysApply: false
+---
+
+Read the repository root `SKILL.md` before performing Planetable API work. Use `references/api.md` for endpoint details and `scripts/planetable.py` for sanitized probes and common operations.
+
+Default to loopback discovery (`127.0.0.1:9191`, then `127.0.0.1:8086`) unless `PLANETABLE_BASE_URL` or the user provides a base URL. Treat `GET /v0/planets/my` as sensitive and do not expose tokens, keys, custom code, SSH/rsync fields, or provider configuration in chat.
