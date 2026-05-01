@@ -47,6 +47,18 @@ python3 scripts/planetable.py search "query"
 
 Search returns matching planets and articles. Article previews may include private draft text; quote sparingly and only as needed.
 
+### Inspect Custom Code
+
+Planet records may include `customCodeHead`, `customCodeBodyStart`, and `customCodeBodyEnd` plus matching `*Enabled` flags. These are rendered through Stencil and injected into every generated page when enabled.
+
+When inspecting custom code:
+
+- Report enabled flags, string lengths, and high-level structure instead of dumping full code.
+- Recognize Kitze theme overrides in `customCodeHead`, especially `window.KITZE_CONFIG`, `window.KITZE_TAG_CONFIG`, and `window.KITZE_MIDBAR_CONFIG`.
+- Treat `window.KITZE_MIDBAR_CONFIG.projects` as highlighted midbar projects; removing an item from this array removes it from that highlight surface.
+- Treat project/article page HTML separately from custom code. A project can be highlighted both in midbar config and in article content, so search articles for the project name before declaring it retired.
+- Do not rely on `POST /v0/planets/my/:uuid` to save custom code. The current API model accepts `name`, `about`, `template`, and `avatar` only. Use the Planet UI when possible; if a user explicitly requests automation, make a guarded local backup, edit the on-disk planet model, restart/reload Planet if necessary, publish, and verify generated public HTML.
+
 ### Create Or Update Articles
 
 Use multipart form data. At least `title` or `content` is required by the API. `date` is optional and should be ISO 8601 when supplied.

@@ -16,6 +16,8 @@ The public technote documents no authentication. Keep calls on loopback unless t
 - `GET /v0/planets/my` can return private provider configuration, service tokens, custom code, and sync settings. Sanitize by default.
 - Date fields may be ISO 8601 strings in examples, but live responses can also use numeric timestamps. Do not assume one format.
 - Errors are JSON such as `{"error": true, "reason": "Not Found"}` for missing routes.
+- Planet records can include `customCodeHead`, `customCodeBodyStart`, `customCodeBodyEnd`, and matching enabled flags. These fields are returned by read endpoints, but the current `APIPlanet` update model only accepts `name`, `about`, `template`, and `avatar`.
+- Kitze custom-code overrides commonly define `window.KITZE_CONFIG`, `window.KITZE_TAG_CONFIG`, and `window.KITZE_MIDBAR_CONFIG`. The midbar `projects` array controls highlighted project links in the center profile column.
 
 ## Endpoints
 
@@ -50,6 +52,8 @@ Fields:
 - `about`: string
 - `template`: string
 - `avatar`: JPEG, PNG, or GIF file, 5 MB max
+
+This route does not currently update custom-code fields, even though read responses include them.
 
 `DELETE /v0/planets/my/:uuid`
 
